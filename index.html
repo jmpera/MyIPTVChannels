@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>EXTM3U Parser</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -18,11 +18,69 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+		<div class="col-md-6">
+			<form class="form-horizontal">
+				<fieldset>
+
+				<!-- Form Name -->
+				<legend>Parser Options</legend>
+
+				<!-- Text input-->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="txtUrl">Url</label>  
+				  <div class="col-md-8">
+				  <input id="txtUrl" name="txtUrl" type="text" placeholder="http://" class="form-control input-md" required="">
+				  <span class="help-block">M3U Url File to parse</span>  
+				  </div>
+				</div>
+
+				<!-- Button -->
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="btnParse"></label>
+				  <div class="col-md-4">
+					<button id="btnParse" name="btnParse" class="btn btn-success" OnClick="parseUrl();">Parse</button>
+				  </div>
+				</div>
+
+				</fieldset>
+			</form>
+		</div>
+		<div class="col-md-6">
+			<div id="results">
+			<div>
+		</div>
+		
+		
+	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	
+	<script type="text/javascript">
+	function parseUrl(){
+		var url = $('#txtUrl').val();
+		console.log(url);
+		$.get( url, function( data ) {
+			console.log(data);
+		  $('#results').html(data);
+		}).done(function() {
+			console.log( "second success" );
+		  })
+		  .fail(function() {
+			console.log( "error" );
+		  })
+		  .always(function() {
+			console.log( "finished" );
+		  });
+		  return false;
+	}
+	
+	$(document).ready(function (){
+		
+	});
+	</script>
   </body>
 </html>
